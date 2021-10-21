@@ -8,7 +8,7 @@ int charSort() {
         // TODO write code here
         char *locale = setlocale(LC_ALL, "en_US.utf8");
         wchar_t c;                                       //input character with more bytes
-        char temp;                                       //temporary character for sorting
+        wchar_t temp;                                       //temporary character for sorting
         wchar_t list[10000];                             //character array to store input characters
         int counter[10000];                              //integer array to store count of characters
         int found = 0;                                   //integer to show if next character is in array currently
@@ -46,17 +46,19 @@ int charSort() {
         }
         fclose(in);
         for (int i = 0; i < (sl - 1); ++i) {            //for loop for sorting by number of character appearance from input
-                if (counter[i] < counter[i + 1]) {
-                        temp2 = counter[i];
-                        counter[i] = counter[i + 1];
-                        counter[i + 1] = temp2;
-                        temp = list[i];
-                        list[i] = list[i + 1];
-                        list[i + 1] = temp;
-                 }
+                for (int j = i + 1; j < sl; ++j) {
+                        if (counter[i] < counter[j]) {
+                                temp2 = counter[i];
+                                counter[i] = counter[j];
+                                counter[j] = temp2;
+                                temp = list[i];
+                                list[i] = list[j];
+                                list[j] = temp;
+                        }
+                }
         }
-        for (int i = 0; i < sl; ++i) {                      //for loop for printing arrays
-                wprintf(L"%c->%d\n", list[i], counter[i]);
+        for (int i = 0; i < sl; ++i) {                      //for loop for printing arrays of corresponding characters with their count
+                wprintf(L"%lc->%d\n", list[i], counter[i]);
         }
         return 0;
 }
