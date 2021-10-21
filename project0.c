@@ -9,8 +9,8 @@ int charSort() {
         char *locale = setlocale(LC_ALL, "en_US.utf8");
         wchar_t c;                                       //input character with more bytes
         wchar_t temp;                                       //temporary character for sorting
-        wchar_t list[10000];                             //character array to store input characters
-        int counter[10000];                              //integer array to store count of characters
+        wchar_t list[300000];                             //character array to store input characters
+        int counter[300000];                              //integer array to store count of characters
         int found = 0;                                   //integer to show if next character is in array currently
         int sl = 0;                                      //integer to show the amount of characters in array
         int temp2;                                       //temporary integer for sorting
